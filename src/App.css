@@ -3,10 +3,13 @@ footer {
   background-color: black;
 }
 
-.carousel {
-  height: 400px;
+.btnList {
+  border-radius: 20px 20px 20px 20px;
+  width: 60px;
+  height: 60px;
 }
 
+.carousel,
 .imgCarousel {
   height: 400px;
 }
@@ -15,9 +18,13 @@ footer {
   background: url("bgfond.jpeg");
 }
 
+.sectionTitle {
+  font-size: 2.6em;
+}
+
 .homePage {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .header {
@@ -49,8 +56,38 @@ footer {
 }
 
 .sectionFilter {
-  background-color: rgb(19, 19, 18);
+  background-color: rgb(14, 14, 13);
   justify-content: center;
+}
+
+.layoutOrganisation {
+  display: flex;
+}
+
+.dialect {
+  background-color: rgb(14, 14, 13);
+  overflow: hidden;
+}
+
+.spanAnimated {
+  position: relative;
+  animation: animation 17s infinite linear;
+}
+
+@keyframes animation {
+  0% {
+    left: 1900px;
+  }
+  100% {
+    left: -1000px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .carousel,
+  .imgCarousel {
+    height: 600px;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -61,11 +98,25 @@ footer {
   .collectionBtn {
     margin-left: 0%;
   }
+
+  .sectionTitle {
+    font-size: 1.5em;
+  }
+
+  .dialect {
+    display: flex;
+    justify-content: center;
+  }
+
+  .spanAnimated {
+    animation: none;
+  }
 }
 
 @media (max-width: 991px) {
-  .title {
-    display: none;
+  .carousel,
+  .imgCarousel {
+    height: 250px;
   }
 
   .filterSelected {
@@ -87,5 +138,11 @@ footer {
     margin-left: 7%;
     margin-right: 3%;
     height: 60px;
+  }
+
+  .layoutOrganisation,
+  .title,
+  .dialect {
+    display: none;
   }
 }

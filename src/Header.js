@@ -12,7 +12,7 @@ class Header extends Component {
               <input
                 className="form-control border py-2"
                 type="search"
-                value="search"
+                placeholder="Enter a title's game"
               />
               <div className="input-group-append">
                 <button
@@ -30,6 +30,13 @@ class Header extends Component {
           <button className="collectionBtn bg-dark border border-warning rounded text-warning">
             My collection
           </button>
+        </div>
+        <div className="col-12 dialect py-4">
+          <span className="spanAnimated">
+            Search your favorite games and add them until 100 into your
+            collection ! You can add until 10 collections, and you can delete
+            them.
+          </span>
         </div>
       </header>
     );

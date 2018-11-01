@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <Header />
-        <Filter />
         <BrowserRouter>
           <Switch>
             <div className="row d-flex justify-content-center subContainer">
