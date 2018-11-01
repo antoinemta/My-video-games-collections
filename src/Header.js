@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <header className="row text-white">
-        <div className="col-12 py-4 d-flex header">
+        <div className="col-12 py-5 d-flex header">
           <span className="title">MY VIDEO GAMES COLLECTION</span>
           <div className="col-lg-3 inputSearch">
             <div className="input-group">

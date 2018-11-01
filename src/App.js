@@ -6,15 +6,21 @@ import "./App.css";
 import Homepage from "./Homepage";
 import Header from "./Header";
 import Footer from "./Footer";
+import Filter from "./Filter";
 
 class App extends Component {
   render() {
     return (
       <div className="container-fluid">
         <Header />
+        <Filter />
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={Homepage} />
+            <div className="row d-flex justify-content-center subContainer">
+              <div className="col-md-10">
+                <Route exact path="/" component={Homepage} />
+              </div>
+            </div>
           </Switch>
         </BrowserRouter>
         <Footer />

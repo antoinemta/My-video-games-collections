@@ -5,7 +5,9 @@ class Footer extends Component {
   render() {
     return (
       <footer className="row">
-        <div className="col-12">cold and blacnk</div>
+        <div className="col-12 d-flex justify-content-center py-4">
+          <span>cold and blanck</span>
+        </div>
       </footer>
     );
   }
