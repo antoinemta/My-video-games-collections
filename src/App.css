@@ -3,6 +3,14 @@ footer {
   background-color: black;
 }
 
+.carousel {
+  height: 400px;
+}
+
+.imgCarousel {
+  height: 400px;
+}
+
 .subContainer {
   background: url("bgfond.jpeg");
 }

@@ -17,7 +17,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <div className="row d-flex justify-content-center subContainer">
-              <div className="col-md-10">
+              <div className="col-md-10 px-0">
                 <Route exact path="/" component={Homepage} />
               </div>
             </div>
