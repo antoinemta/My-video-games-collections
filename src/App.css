@@ -74,6 +74,34 @@ footer {
   animation: animation 17s infinite linear;
 }
 
+.cardGame {
+  border: 1px white solid;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imgCard {
+  width: 160px;
+  height: 100vh;
+}
+
+.titleGame {
+  position: absolute;
+  background-color: red;
+  width: 100%;
+  bottom: 0px;
+  text-align: center;
+}
+
+.relativeCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 @keyframes animation {
   0% {
     left: 1900px;

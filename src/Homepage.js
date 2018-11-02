@@ -6,33 +6,44 @@ import Filter from "./Filter";
 
 const Homepage = () => (
   <div className="col-12 homePage px-0">
-    <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
-      <div>
-        <img src="index.jpeg" className="imgCarousel" />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src="index.jpeg" className="imgCarousel" />
-        <p className="legend">Legend 2</p>
-      </div>
-      <div>
-        <img src="index.jpeg" className="imgCarousel" />
-        <p className="legend">Legend 3</p>
-      </div>
-    </Carousel>
+    <section className="row mx-0">
+      <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
+        <div>
+          <img src="index.jpeg" className="imgCarousel" />
+          <p className="legend">Legend 1</p>
+        </div>
+        <div>
+          <img src="index.jpeg" className="imgCarousel" />
+          <p className="legend">Legend 2</p>
+        </div>
+        <div>
+          <img src="index.jpeg" className="imgCarousel" />
+          <p className="legend">Legend 3</p>
+        </div>
+      </Carousel>
+    </section>
     <Filter />
-    <div className="col-12 layoutOrganisation">
-      <div className="col-sm-6 col-xl-10 py-4 border-right">
-        <span className="sectionTitle text-white">
-          <u>Games which may interest you</u>
-        </span>
+    <section className="row mx-0">
+      <div className="col-12 layoutOrganisation">
+        <div className="col-sm-6 col-xl-10 py-4 border-right">
+          <span className="sectionTitle text-white">
+            <u>Games which may interest you</u>
+          </span>
+        </div>
+        <div className="col d-flex justify-content-center pt-4">
+          <img src="card.png" className="btnList mr-4" />
+          <img src="line.png" className="btnList" />
+        </div>
       </div>
-      <div className="col d-flex justify-content-center pt-4">
-        <img src="card.png" className="btnList mr-4" />
-        <img src="line.png" className="btnList" />
+    </section>
+    <section className="row mx-0">
+      <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0 cardGame">
+        <div className="relativeCard">
+          <img src="card.png" className="imgCard" />
+          <span className="titleGame">Red hot chillie peppers</span>
+        </div>
       </div>
-    </div>
-    <div className="col-12">cards</div>
+    </section>
   </div>
 );
 
