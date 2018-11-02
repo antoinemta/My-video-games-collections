@@ -36,11 +36,11 @@ const Homepage = () => (
         </div>
       </div>
     </section>
-    <section className="row mx-0">
-      <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0 cardGame">
+    <section className="row mx-0 py-5 mt-4">
+      <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0 my-4 cardGame">
         <div className="relativeCard">
-          <img src="card.png" className="imgCard" />
-          <span className="titleGame">Red hot chillie peppers</span>
+          <img src="index.jpeg" className="imgCard" />
+          <span className="titleGame">Metal gear solid V</span>
         </div>
       </div>
     </section>

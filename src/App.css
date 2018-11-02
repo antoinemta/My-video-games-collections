@@ -75,7 +75,6 @@ footer {
 }
 
 .cardGame {
-  border: 1px white solid;
   height: 250px;
   display: flex;
   justify-content: center;
@@ -87,9 +86,40 @@ footer {
   height: 100vh;
 }
 
+.imgCard:hover {
+  opacity: 0.4;
+  cursor: pointer;
+  animation: animated 0.1s linear forwards;
+}
+
+.imgCard:hover + span {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  color: black;
+  animation: anime 0.2s linear forwards;
+}
+
+@keyframes anime {
+  0% {
+    font-size: 0.2em;
+  }
+
+  100% {
+    bottom: 50%;
+    font-size: 1em;
+  }
+}
+
+@keyframes animated {
+  100% {
+    transform: scale(1.2);
+  }
+}
+
 .titleGame {
   position: absolute;
-  background-color: red;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   bottom: 0px;
   text-align: center;
