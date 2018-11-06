@@ -9,6 +9,15 @@ footer {
   height: 60px;
 }
 
+.paddingBottom {
+  padding-bottom: 100px;
+}
+
+.btnList:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
 .carousel,
 .imgCarousel {
   height: 400px;
@@ -99,21 +108,11 @@ footer {
   animation: anime 0.2s linear forwards;
 }
 
-@keyframes anime {
-  0% {
-    font-size: 0.2em;
-  }
-
-  100% {
-    bottom: 50%;
-    font-size: 1em;
-  }
-}
-
-@keyframes animated {
-  100% {
-    transform: scale(1.2);
-  }
+.titleGame:hover {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  color: black;
+  animation: anime 0.2s linear forwards;
 }
 
 .titleGame {
@@ -130,6 +129,41 @@ footer {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+.titleWrap {
+  word-wrap: break-word;
+}
+
+.listCardGame {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.listCardGame:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 6px 6px 3px;
+  cursor: pointer;
+}
+
+.notDisplay {
+  display: none;
+}
+
+@keyframes anime {
+  0% {
+    font-size: 0.2em;
+  }
+
+  100% {
+    bottom: 50%;
+    font-size: 1em;
+  }
+}
+
+@keyframes animated {
+  100% {
+    transform: scale(1.2);
+  }
 }
 
 @keyframes animation {
