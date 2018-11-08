@@ -3,6 +3,7 @@ import { NavLink, Route, BrowserRouter, Switch } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Filter from "./Filter";
+import io from "socket.io-client";
 
 class Homepage extends Component {
   constructor() {
@@ -13,8 +14,20 @@ class Homepage extends Component {
       classImgCard: "imgCard",
       classTitleGame: "titleGame",
       listTitleGame: "notDisplay",
-      classRow: "row mx-0 py-5 mt-4"
+      classRow: "row mx-0 py-5 mt-4",
+      cards: []
     };
+  }
+
+  socketTransition(socket) {
+    this.setState({
+      cards: socket
+    });
+  }
+
+  componentDidMount() {
+    const socket = io.connect("http://localhost:8080");
+    socket.on("gamesHomePage", socket => this.socketTransition(socket));
   }
 
   displayCard() {
@@ -81,24 +94,15 @@ class Homepage extends Component {
           </div>
         </section>
         <section className={this.state.classRow}>
-          <div className={this.state.classCardGame}>
-            <div className={this.state.classRelativeCard}>
-              <img src="index.jpeg" className={this.state.classImgCard} />
-              <span className={this.state.classTitleGame}>
-                Metal gear solid V
-              </span>
+          {this.state.cards.map(cards => (
+            <div className={this.state.classCardGame}>
+              <div className={this.state.classRelativeCard}>
+                <img src={cards.cover} className={this.state.classImgCard} />
+                <span className={this.state.classTitleGame}>{cards.name}</span>
+              </div>
+              <span className={this.state.listTitleGame}>title</span>
             </div>
-            <span className={this.state.listTitleGame}>title</span>
-          </div>
-          <div className={this.state.classCardGame}>
-            <div className={this.state.classRelativeCard}>
-              <img src="index.jpeg" className={this.state.classImgCard} />
-              <span className={this.state.classTitleGame}>
-                Metal gear solid V
-              </span>
-            </div>
-            <span className={this.state.listTitleGame}>title</span>
-          </div>
+          ))}
         </section>
       </div>
     );
