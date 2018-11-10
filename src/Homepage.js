@@ -20,6 +20,10 @@ class Homepage extends Component {
   }
 
   socketTransition(socket) {
+    for (let i = 0; i < socket.length; i++) {
+      console.log(socket[i].cover.url);
+    }
+
     this.setState({
       cards: socket
     });
