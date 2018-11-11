@@ -1,81 +1,91 @@
 const express = require("express")();
-const http = require("http").createServer(express);
-const io = require("socket.io").listen(http);
 const igdb = require("igdb-api-node").default;
 const client = igdb("90a99261aaa1cfdc5c234776abdc14fb");
 
-function gamesHomePage(socket) {
+express.get("/home", function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.writeHead(200, { "Content-Type": "text/json" });
+  next();
   client
     .games({
-      /*filters: {
-        "release_dates.date-gt": "1988-12-31",
-        "release_dates.date-lt": "1990-01-01"
-        "release_dates.platform-eq": 48
-      }*/ search:
-        "1984",
+      filters: {
+        "release_dates.date-gt": "2017-12-31",
+        "release_dates.date-lt": "2019-01-01",
+        "release_dates.platform-eq": 6
+      },
       fields:
-        "cover,name,summary,rating,developers,publishers,genres,first_release_date,platforms,release_dates,screenshots,videos", // Return all fields
+        "cover,name,summary,rating,genres,first_release_date,release_dates,screenshots,videos", // Return all fields
       limit: 50, // Limit to 5 results
       offset: 0 // Index offset for results
     })
     .then(response => {
       let games = [];
-      response.body.map(a => {
+      response.body.map(data => {
         let poster = "moviePosterPlaceholder.png";
 
-        if (a.cover) {
-          poster = "http:" + a.cover.url;
+        if (data.cover) {
+          poster = "http:" + data.cover.url;
         }
 
         let date = "unknown";
 
-        if (a.release_dates) {
-          if (a.release_dates.filter(b => b.date == a.first_release_date)[0]) {
-            date = a.release_dates.filter(
-              b => b.date == a.first_release_date
+        if (data.release_dates) {
+          if (
+            data.release_dates.filter(
+              content => content.date == data.first_release_date
+            )[0]
+          ) {
+            date = data.release_dates.filter(
+              content => content.date == data.first_release_date
             )[0].y;
           }
         }
 
         let screens = [];
 
-        if (a.screenshots) {
-          a.screenshots.map(screen => screens.push("http:" + screen.url));
+        if (data.screenshots) {
+          data.screenshots.map(screen => screens.push("http:" + screen.url));
         }
 
         let idTrailer = undefined;
 
-        if (a.videos) {
-          if (a.videos.filter(video => video.name == "Trailer")[0]) {
-            idTrailer = a.videos.filter(video => video.name == "Trailer")[0]
+        if (data.videos) {
+          if (data.videos.filter(video => video.name == "Trailer")[0]) {
+            idTrailer = data.videos.filter(video => video.name == "Trailer")[0]
               .video_id;
           }
         }
 
         games.push({
-          id: a.id,
-          name: a.name,
-          summary: a.summary,
-          rating: a.rating,
-          developers: a.developers,
-          publishers: a.publishers,
-          genres: a.genres,
-          platforms: a.platforms,
+          name: data.name,
+          summary: data.summary,
+          rating: data.rating,
+          cover: poster,
+          genres: data.genres,
           date: date,
           screenshots: screens,
           video: idTrailer
         });
       });
-      console.log(games);
-      //socket.emit("gamesHomePage", response.body);
+
+      res.end(JSON.stringify(games));
     })
     .catch(error => {
       throw error;
     });
-}
 
-io.sockets.on("connection", function(socket) {
-  gamesHomePage(socket);
+  setTimeout(function() {
+    res.end();
+  }, 6000);
 });
 
-http.listen(8080);
+express.listen(8080);

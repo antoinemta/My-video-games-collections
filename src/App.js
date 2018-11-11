@@ -6,24 +6,26 @@ import "./App.css";
 import Homepage from "./Homepage";
 import Header from "./Header";
 import Footer from "./Footer";
-import Filter from "./Filter";
+import GameDetail from "./GameDetail";
 
 class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <Header />
-        <BrowserRouter>
-          <Switch>
+      <BrowserRouter>
+        <Switch>
+          <div className="container-fluid">
+            <Header />
             <div className="row d-flex justify-content-center subContainer">
               <div className="col-md-10 px-0">
                 <Route exact path="/" component={Homepage} />
+                <Route exact path="/game" component={GameDetail} />
               </div>
             </div>
-          </Switch>
-        </BrowserRouter>
-        <Footer />
-      </div>
+
+            <Footer />
+          </div>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

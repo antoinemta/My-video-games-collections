@@ -10,10 +10,7 @@ class Homepage extends Component {
     super();
     this.state = {
       classCardGame: "col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0 my-4 cardGame",
-      classRelativeCard: "relativeCard",
-      classImgCard: "imgCard",
-      classTitleGame: "titleGame",
-      listTitleGame: "notDisplay",
+      classLineGame: "notDisplay",
       classRow: "row mx-0 py-5 mt-4",
       cards: []
     };
@@ -30,29 +27,28 @@ class Homepage extends Component {
   }
 
   componentDidMount() {
-    const socket = io.connect("http://localhost:8080");
-    socket.on("gamesHomePage", socket => this.socketTransition(socket));
+    fetch("http://localhost:8080/home")
+      .then(results => results.json()) // conversion du résultat en JSON
+      .then(data => {
+        this.setState({
+          cards: data
+        });
+      });
   }
 
   displayCard() {
     this.setState({
       classCardGame: "col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0 my-4 cardGame",
-      classRelativeCard: "relativeCard",
-      classImgCard: "imgCard",
-      classTitleGame: "titleGame",
-      listTitleGame: "notDisplay",
+      classLineGame: "notDisplay",
       classRow: "row mx-0 py-5 mt-4"
     });
   }
 
   displayLine() {
     this.setState({
-      classCardGame: "col-12 py-1 border-bottom listCardGame",
-      classRelativeCard: "notDisplay",
-      classImgCard: "notDisplay",
-      classTitleGame: "notDisplay",
-      listTitleGame: "ml-5 text-white titleWrap",
-      classRow: "row px-5 mx-0 pt-5 mt-4 paddingBottom"
+      classCardGame: "notDisplay",
+      classLineGame: "col-md-11 border-bottom listCardGame d-flex",
+      classRow: "row mx-0 pt-5 mt-4 paddingBottom d-flex justify-content-center"
     });
   }
 
@@ -99,13 +95,53 @@ class Homepage extends Component {
         </section>
         <section className={this.state.classRow}>
           {this.state.cards.map(cards => (
-            <div className={this.state.classCardGame}>
-              <div className={this.state.classRelativeCard}>
-                <img src={cards.cover} className={this.state.classImgCard} />
-                <span className={this.state.classTitleGame}>{cards.name}</span>
+            <NavLink
+              to={{
+                pathname: "/game",
+                state: {
+                  name: cards.name,
+                  url: cards.cover,
+                  date: cards.date,
+                  genres: cards.genres,
+                  summary: cards.summary
+                }
+              }}
+              className={this.state.classCardGame}
+            >
+              <div className="relativeCard">
+                <img src={cards.cover} className="imgCard" />
+                <span className="titleGame">{cards.name}</span>
               </div>
-              <span className={this.state.listTitleGame}>title</span>
-            </div>
+            </NavLink>
+          ))}
+          {this.state.cards.map(cards => (
+            <NavLink
+              to={{
+                pathname: "/game",
+                state: {
+                  name: cards.name,
+                  url: cards.cover,
+                  date: cards.date,
+                  genres: cards.genres,
+                  summary: cards.summary
+                }
+              }}
+              className={this.state.classLineGame}
+            >
+              <div className="col-2 d-none d-sm-none d-md-none d-lg-none d-xl-block hidden">
+                <img src={cards.cover} className="my-3 ml-5 imgLine" />
+              </div>
+              <div className="col-8 hidden">
+                <div>
+                  <span className="titleLine">{cards.name}</span>
+                  <span className="dateLine ml-3">({cards.date})</span>
+                </div>
+                <div>test</div>
+              </div>
+              <div className="col ratingLine d-none d-sm-block hidden">
+                <span>{cards.rating}</span>
+              </div>
+            </NavLink>
           ))}
         </section>
       </div>

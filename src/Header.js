@@ -2,17 +2,35 @@ import React, { Component } from "react";
 import { NavLink, Route, BrowserRouter, Switch } from "react-router-dom";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ""
+    };
+  }
+
+  search(event) {
+    this.setState({
+      input: event.target.value
+    });
+    alert(this.state.input);
+  }
+
   render() {
     return (
       <header className="row text-white">
         <div className="col-12 py-5 d-flex header">
-          <span className="title">MY VIDEO GAMES COLLECTION</span>
+          <NavLink to="/">
+            <span className="title">MY VIDEO GAMES COLLECTION</span>
+          </NavLink>
+          {this.state.input}
           <div className="col-lg-3 inputSearch">
             <div className="input-group">
               <input
                 className="form-control border py-2"
                 type="search"
                 placeholder="Enter a title's game"
+                onChange={event => this.search(event)}
               />
               <div className="input-group-append">
                 <button

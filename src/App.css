@@ -3,10 +3,29 @@ footer {
   background-color: black;
 }
 
+.titleDetail {
+  color: white;
+  font-size: 2.5em;
+}
+
 .btnList {
   border-radius: 20px 20px 20px 20px;
   width: 60px;
   height: 60px;
+}
+
+.subtitleDetail {
+  color: white;
+  font-size: 1.3em;
+}
+
+.contentDetail {
+  font-size: 1.3em;
+  color: rgb(0, 167, 48);
+}
+
+.hidden {
+  overflow: hidden;
 }
 
 .paddingBottom {
@@ -90,7 +109,17 @@ footer {
   overflow: hidden;
 }
 
+.posterDetail {
+  width: 500px;
+  height: 700px;
+}
+
 .imgCard {
+  width: 160px;
+  height: 100vh;
+}
+
+.lineCard {
   width: 160px;
   height: 100vh;
 }
@@ -141,12 +170,30 @@ footer {
 
 .listCardGame:hover {
   background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
   box-shadow: 6px 6px 3px;
   cursor: pointer;
 }
 
+.imgLine {
+  height: 100px;
+  width: 100px;
+}
+
 .notDisplay {
   display: none;
+}
+
+.titleLine {
+  font-size: 1.5em;
+  color: rgb(0, 167, 48);
+}
+.dateLine {
+  font-size: 1.5em;
+  color: white;
+}
+.ratingLine {
+  text-align: right;
 }
 
 @keyframes anime {
@@ -236,5 +283,9 @@ footer {
   .title,
   .dialect {
     display: none;
+  }
+
+  .posterDetail {
+    width: 100%;
   }
 }
