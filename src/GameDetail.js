@@ -15,8 +15,8 @@ class GameDetail extends Component {
 
   render() {
     return (
-      <div className="col-12 homePage px-0">
-        <section className="row mx-0">
+      <section className="col-12 homePage px-0">
+        <div className="row mx-0">
           <div className="col-xl-6 pt-5 d-flex justify-content-center">
             <div className="col-8 pt-5">
               <div className="titleDetail mt-5">
@@ -42,8 +42,22 @@ class GameDetail extends Component {
               className="mt-5 posterDetail"
             />
           </div>
-        </section>
-      </div>
+        </div>
+        <div className="row mx-0">
+          <div className="col-12 pl-5 pt-5">
+            <div className="mt-5 screenTitle">Screenshots :</div>
+          </div>
+          <div className="row mx-0 mt-3 galleryScreens">
+            {this.props.location.state.screens.map(url => (
+              <div className="divScreen">
+                <a href={url}>
+                  <img src={url} className="screen" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     );
   }
 }
