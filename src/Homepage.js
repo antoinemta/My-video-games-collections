@@ -104,7 +104,8 @@ class Homepage extends Component {
                   date: cards.date,
                   genres: cards.genres,
                   summary: cards.summary,
-                  screens: cards.screenshots
+                  screens: cards.screenshots,
+                  videoId: cards.video
                 }
               }}
               className={this.state.classCardGame}
@@ -125,7 +126,8 @@ class Homepage extends Component {
                   date: cards.date,
                   genres: cards.genres,
                   summary: cards.summary,
-                  screens: cards.screenshots
+                  screens: cards.screenshots,
+                  videoId: cards.video
                 }
               }}
               className={this.state.classLineGame}

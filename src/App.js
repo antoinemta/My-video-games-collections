@@ -7,6 +7,7 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import Footer from "./Footer";
 import GameDetail from "./GameDetail";
+import Collection from "./Collection";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <div className="col-md-10 px-0">
                 <Route exact path="/" component={Homepage} />
                 <Route exact path="/game" component={GameDetail} />
+                <Route exact path="/collection" component={Collection} />
               </div>
             </div>
 

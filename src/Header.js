@@ -23,7 +23,6 @@ class Header extends Component {
           <NavLink to="/">
             <span className="title">MY VIDEO GAMES COLLECTION</span>
           </NavLink>
-          {this.state.input}
           <div className="col-lg-3 inputSearch">
             <div className="input-group">
               <input
@@ -45,9 +44,12 @@ class Header extends Component {
           <span className="mt-1 mr-5 commentHeader">
             Add your favorite games in your collection!
           </span>
-          <button className="collectionBtn bg-dark border border-warning rounded text-warning">
+          <NavLink
+            to="/collection"
+            className="px-3 py-1 collectionBtn bg-dark border border-warning rounded text-warning"
+          >
             My collection
-          </button>
+          </NavLink>
         </div>
         <div className="col-12 dialect py-4">
           <span className="spanAnimated">

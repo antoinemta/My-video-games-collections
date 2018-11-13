@@ -18,11 +18,33 @@ footer {
   color: white;
   font-size: 1.5em;
   margin-left: 17%;
+  text-decoration: underline;
+}
+
+.addingDivButton {
+  text-align: right;
+}
+
+.addingButton {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  border: 1px rgb(76, 65, 247) solid;
+  color: rgb(76, 65, 247);
+  border-radius: 22px 22px 22px 22px;
+}
+
+.addingButton:hover {
+  cursor: pointer;
 }
 
 .galleryScreens {
   padding-left: 12%;
   width: 77%;
+}
+
+.notScreens {
+  margin-left: 13%;
 }
 
 .divScreen {
@@ -33,6 +55,7 @@ footer {
 .subtitleDetail {
   color: white;
   font-size: 1.3em;
+  text-decoration: underline;
 }
 
 .contentDetail {
@@ -78,6 +101,7 @@ footer {
 
 .collectionBtn {
   margin-left: 4%;
+  text-align: center;
 }
 
 .collectionBtn:hover {
@@ -128,6 +152,8 @@ footer {
 .posterDetail {
   width: 500px;
   height: 700px;
+  border: 2px black solid;
+  border-radius: 20px 20px 20px 20px;
 }
 
 .imgCard {
@@ -308,5 +334,9 @@ footer {
 
   .posterDetail {
     width: 100%;
+  }
+
+  .addingDivButton {
+    text-align: center;
   }
 }

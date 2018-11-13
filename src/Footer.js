@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
       <footer className="row">
         <div className="col-12 d-flex justify-content-center py-4">
-          <span>cold and blanck</span>
+          <span>Lorem Ipsum</span>
         </div>
       </footer>
     );
