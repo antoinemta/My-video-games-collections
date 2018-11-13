@@ -18,7 +18,7 @@ class GameDetail extends Component {
     return (
       <section className="col-12 homePage px-0">
         <div className="row mx-0">
-          <div className="col-xl-6 pt-5 d-flex justify-content-center">
+          <div className="col-sm-6 pt-5 d-flex justify-content-center">
             <div className="col-8 pt-5">
               <div className="titleDetail mt-5">
                 {this.props.location.state.name}
