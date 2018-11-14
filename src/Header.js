@@ -13,7 +13,6 @@ class Header extends Component {
     this.setState({
       input: event.target.value
     });
-    alert(this.state.input);
   }
 
   render() {
@@ -32,12 +31,18 @@ class Header extends Component {
                 onChange={event => this.search(event)}
               />
               <div className="input-group-append">
-                <button
+                <NavLink
+                  to={{
+                    pathname: "/search",
+                    state: {
+                      input: this.state.input
+                    }
+                  }}
                   className="btn btn-outline-secondary border-warning"
                   type="button"
                 >
                   <i className="fa fa-search" />
-                </button>
+                </NavLink>
               </div>
             </div>
           </div>

@@ -1,29 +1,49 @@
 import React, { Component } from "react";
-import { NavLink, Route, BrowserRouter, Switch } from "react-router-dom";
-import { Carousel } from "react-responsive-carousel";
+import {
+  NavLink,
+  Redirect,
+  Route,
+  BrowserRouter,
+  Switch
+} from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Filter from "./Filter";
 
-class Homepage extends Component {
-  constructor() {
-    super();
+class Search extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       classCardGame: "col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0 my-4 cardGame",
       classLineGame: "notDisplay",
       classRow: "row mx-0 py-5 mt-4",
-      cards: [],
-      ratingNote: []
+      cards: []
     };
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/home")
-      .then(results => results.json()) // conversion du résultat en JSON
-      .then(data => {
-        this.setState({
-          cards: data
+    try {
+      if (this.props.location.state.input !== "") {
+        fetch("http://localhost:8080/search/" + this.props.location.state.input)
+          .then(results => results.json()) // conversion du résultat en JSON
+          .then(data => {
+            this.setState({
+              cards: data
+            });
+          });
+      }
+    } catch {}
+  }
+
+  componentDidUpdate() {
+    if (this.props.location.state.input !== "") {
+      fetch("http://localhost:8080/search/" + this.props.location.state.input)
+        .then(results => results.json()) // conversion du résultat en JSON
+        .then(data => {
+          this.setState({
+            cards: data
+          });
         });
-      });
+    }
   }
 
   displayCard() {
@@ -43,30 +63,29 @@ class Homepage extends Component {
   }
 
   render() {
+    try {
+      let isset = this.props.location.state.input;
+    } catch {
+      return <Redirect to="/" from="/search" />;
+    }
+
     return (
-      <div className="col-12 homePage px-0">
-        <section className="row mx-0">
-          <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
-            <div>
-              <img src="index.jpeg" className="imgCarousel" />
-              <p className="legend">Legend 1</p>
-            </div>
-            <div>
-              <img src="index.jpeg" className="imgCarousel" />
-              <p className="legend">Legend 2</p>
-            </div>
-            <div>
-              <img src="index.jpeg" className="imgCarousel" />
-              <p className="legend">Legend 3</p>
-            </div>
-          </Carousel>
-        </section>
+      <div className="col-12 homePage px-0 border-top">
         <Filter />
         <section className="row mx-0">
           <div className="col-12 layoutOrganisation">
             <div className="col-sm-6 col-xl-10 py-4 border-right">
               <span className="sectionTitle text-white d-flex justify-content-center">
-                Games which may interest you
+                {this.props.location.state.input !== "" && (
+                  <div>
+                    {this.state.cards.length}
+                    &nbsp;result(s) found for :&nbsp;{" "}
+                    {this.props.location.state.input}
+                  </div>
+                )}
+                {this.props.location.state.input === "" && (
+                  <div>You must enter a valid title.</div>
+                )}
               </span>
             </div>
             <div className="col d-flex justify-content-center pt-4">
@@ -117,7 +136,8 @@ class Homepage extends Component {
                   genres: cards.genres,
                   summary: cards.summary,
                   screens: cards.screenshots,
-                  videoId: cards.video
+                  videoId: cards.video,
+                  stars: cards.stars
                 }
               }}
               className={this.state.classLineGame}
@@ -150,4 +170,4 @@ class Homepage extends Component {
     );
   }
 }
-export default Homepage;
+export default Search;

@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { NavLink, Route, BrowserRouter, Switch } from "react-router-dom";
+import {
+  NavLink,
+  Redirect,
+  Route,
+  BrowserRouter,
+  Switch
+} from "react-router-dom";
 import Filter from "./Filter";
 import YouTube from "react-youtube";
 
@@ -15,6 +21,12 @@ class GameDetail extends Component {
   }
 
   render() {
+    try {
+      let isset = this.props.location.state.name;
+    } catch {
+      return <Redirect to="/" from="/game" />;
+    }
+
     return (
       <section className="col-12 homePage px-0">
         <div className="row mx-0">

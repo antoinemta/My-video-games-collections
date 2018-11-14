@@ -51,10 +51,6 @@ footer {
   border-radius: 22px 22px 22px 22px;
 }
 
-.addingButton:hover {
-  cursor: pointer;
-}
-
 .galleryScreens {
   padding-left: 12%;
   width: 77%;
@@ -166,6 +162,11 @@ footer {
   overflow: hidden;
 }
 
+.star {
+  width: 20px;
+  height: 20px;
+}
+
 .posterDetail {
   width: 500px;
   height: 700px;
@@ -173,7 +174,8 @@ footer {
   border-radius: 20px 20px 20px 20px;
 }
 
-.imgCard {
+.imgCard,
+.imgCardCol {
   width: 160px;
   height: 100vh;
 }
@@ -183,13 +185,40 @@ footer {
   height: 100vh;
 }
 
-.imgCard:hover {
+.btnDelete {
+  position: absolute;
+  border-radius: 22px 22px 22px 22px;
+  top: 8px;
+  left: 70px;
+  background-color: black;
+  border: 1px red solid;
+  color: red;
+}
+
+.btnDelete:hover,
+.deletingButton:hover,
+.addingButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px white solid;
+  color: white;
+  cursor: pointer;
+}
+
+.imgCard:hover,
+.imgCardCol:hover {
   opacity: 0.4;
   cursor: pointer;
   animation: animated 0.1s linear forwards;
 }
 
 .imgCard:hover + span {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  color: black;
+  animation: anime 0.2s linear forwards;
+}
+
+.imgCardCol:hover + button + span {
   background-color: rgba(0, 0, 0, 0);
   font-weight: bold;
   color: black;
@@ -250,7 +279,7 @@ footer {
 
 .dateLine {
   font-size: 1.5em;
-  color: white;
+  color: green;
 }
 .ratingLine {
   text-align: right;
