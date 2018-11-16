@@ -95,7 +95,10 @@ class Homepage extends Component {
                   genres: cards.genres,
                   summary: cards.summary,
                   screens: cards.screenshots,
-                  videoId: cards.video
+                  videoId: cards.video,
+                  id: cards.id,
+                  rating: cards.rating,
+                  stars: cards.stars
                 }
               }}
               className={this.state.classCardGame}
@@ -117,7 +120,10 @@ class Homepage extends Component {
                   genres: cards.genres,
                   summary: cards.summary,
                   screens: cards.screenshots,
-                  videoId: cards.video
+                  videoId: cards.video,
+                  id: cards.id,
+                  rating: cards.rating,
+                  stars: cards.stars
                 }
               }}
               className={this.state.classLineGame}

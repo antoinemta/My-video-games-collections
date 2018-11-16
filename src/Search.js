@@ -114,7 +114,10 @@ class Search extends Component {
                   genres: cards.genres,
                   summary: cards.summary,
                   screens: cards.screenshots,
-                  videoId: cards.video
+                  videoId: cards.video,
+                  stars: cards.stars,
+                  rating: cards.rating,
+                  id: cards.id
                 }
               }}
               className={this.state.classCardGame}
@@ -137,7 +140,9 @@ class Search extends Component {
                   summary: cards.summary,
                   screens: cards.screenshots,
                   videoId: cards.video,
-                  stars: cards.stars
+                  stars: cards.stars,
+                  rating: cards.rating,
+                  id: cards.id
                 }
               }}
               className={this.state.classLineGame}

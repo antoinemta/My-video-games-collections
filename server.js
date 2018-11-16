@@ -77,6 +77,7 @@ express.get("/home", function(req, res, next) {
         }
 
         games.push({
+          id: data.id,
           name: data.name,
           summary: data.summary,
           rating: rating,
@@ -169,6 +170,7 @@ express.get("/search/:input", function(req, res, next) {
         }
 
         games.push({
+          id: data.id,
           name: data.name,
           summary: data.summary,
           rating: rating,
