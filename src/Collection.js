@@ -65,6 +65,57 @@ class Collection extends Component {
     });
   }
 
+  deleteCollection() {
+    if (this.state.collectionChoosen !== "My favorite games") {
+      const games = this.state.games.filter(
+        game => game.collection !== this.state.collectionChoosen
+      );
+      const collections = this.state.collection.filter(
+        collection => collection !== this.state.collectionChoosen
+      );
+
+      localStorage.setItem("games", JSON.stringify(games));
+      localStorage.setItem("collections", JSON.stringify(collections));
+
+      this.setState({
+        games: games,
+        collection: collections,
+        modal: !this.state.modal,
+        cards: games.filter(game => game.collection == "My favorite games"),
+        collectionChoosen: "My favorite games"
+      });
+    }
+  }
+
+  gameDelete(id) {
+    let games = [];
+    this.state.games.map(game => {
+      if (game.id !== id || game.collection !== this.state.collectionChoosen) {
+        games.push({
+          id: game.id,
+          name: game.name,
+          url: game.url,
+          date: game.date,
+          summary: game.summary,
+          rating: game.rating,
+          screens: game.screens,
+          stars: game.stars,
+          videoId: game.videoId,
+          genres: game.genres,
+          collection: game.collection
+        });
+      }
+    });
+
+    localStorage.setItem("games", JSON.stringify(games));
+    this.setState({
+      games: games,
+      cards: games.filter(
+        game => game.collection == this.state.collectionChoosen
+      )
+    });
+  }
+
   appearModal() {
     this.setState({
       modal: !this.state.modal
@@ -92,11 +143,16 @@ class Collection extends Component {
                   ))}
                 </select>
               </div>{" "}
-              {/*<div className="col-12 divBtnDelete">
-                <button className="px-4 mt-2 deletingButton">
-                  Delete this collection
-                </button>
-              </div>*/}
+              {this.state.collectionChoosen !== "My favorite games" && (
+                <div className="col-12 divBtnDelete">
+                  <button
+                    className="px-4 mt-2 deletingButton"
+                    onClick={() => this.appearModal()}
+                  >
+                    Delete this collection
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -130,10 +186,29 @@ class Collection extends Component {
           {this.state.cards.map(game => (
             <div className={this.state.classCardGame}>
               <div className="relativeCard">
-                <img src={game.url} className="imgCardCol" />
+                <NavLink
+                  to={{
+                    pathname: "/game",
+                    state: {
+                      name: game.name,
+                      url: game.url,
+                      date: game.date,
+                      genres: game.genres,
+                      summary: game.summary,
+                      screens: game.screens,
+                      videoId: game.videoId,
+                      stars: game.stars,
+                      rating: game.rating,
+                      id: game.id
+                    }
+                  }}
+                  className="imgCardCol"
+                >
+                  <img src={game.url} className="imgCardPoster" />
+                </NavLink>
                 <button
                   className="btnDelete px-3 py-2"
-                  onClick={() => this.appearModal()}
+                  onClick={event => this.gameDelete(game.id)}
                 >
                   Delete
                 </button>
@@ -143,11 +218,44 @@ class Collection extends Component {
           ))}
           {this.state.cards.map(game => (
             <div className={this.state.classLineGame}>
-              <div className="col-2 d-none d-sm-none d-md-none d-lg-none d-xl-block hidden">
+              <NavLink
+                to={{
+                  pathname: "/game",
+                  state: {
+                    name: game.name,
+                    url: game.url,
+                    date: game.date,
+                    genres: game.genres,
+                    summary: game.summary,
+                    screens: game.screens,
+                    videoId: game.videoId,
+                    stars: game.stars,
+                    rating: game.rating,
+                    id: game.id
+                  }
+                }}
+                className="col-2 d-none d-sm-none d-md-none d-lg-none d-xl-block hidden"
+              >
                 <img src={game.url} className="my-3 ml-5 imgLine" />
-              </div>
-              <div className="col-8 hidden d-flex">
-                <div>
+              </NavLink>
+              <div className="col-8 lineHidden">
+                <NavLink
+                  to={{
+                    pathname: "/game",
+                    state: {
+                      name: game.name,
+                      url: game.url,
+                      date: game.date,
+                      genres: game.genres,
+                      summary: game.summary,
+                      screens: game.screens,
+                      videoId: game.videoId,
+                      stars: game.stars,
+                      rating: game.rating,
+                      id: game.id
+                    }
+                  }}
+                >
                   <div className="pt-3">
                     <span className="titleLine">{game.name}</span>
                     <span className="dateLine ml-3">{game.date}</span>
@@ -157,21 +265,40 @@ class Collection extends Component {
                       <img src={url} className="star" />
                     ))}
                   </div>
-                </div>
+                </NavLink>
                 <div className="pt-3 pl-5">
                   <button
                     className="btnDelete2 px-3 py-2"
-                    onClick={() => this.appearModal()}
+                    onClick={event => this.gameDelete(game.id)}
                   >
                     Delete
                   </button>
                 </div>
               </div>
-              <div className="col ratingLine d-none d-sm-block hidden">
+              <NavLink
+                to={{
+                  pathname: "/game",
+                  state: {
+                    name: game.name,
+                    url: game.url,
+                    date: game.date,
+                    genres: game.genres,
+                    summary: game.summary,
+                    screens: game.screens,
+                    videoId: game.videoId,
+                    stars: game.stars,
+                    rating: game.rating,
+                    id: game.id
+                  }
+                }}
+                className="col ratingLine d-none d-sm-block hidden"
+              >
                 <span className="text-white">
-                  <h3 className="mt-5 mr-4">{game.rating + "/100"}</h3>
+                  {game.rating !== "" && (
+                    <h3 className="mt-5 mr-4">{game.rating + "/100"}</h3>
+                  )}
                 </span>
-              </div>
+              </NavLink>
             </div>
           ))}
         </div>
