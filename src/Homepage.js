@@ -11,7 +11,9 @@ class Homepage extends Component {
       classCardGame: "col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0 my-4 cardGame",
       classLineGame: "notDisplay",
       classRow: "row mx-0 py-5 mt-4",
+      games: [],
       cards: [],
+      filtres: [],
       ratingNote: []
     };
   }
@@ -21,7 +23,8 @@ class Homepage extends Component {
       .then(results => results.json()) // conversion du résultat en JSON
       .then(data => {
         this.setState({
-          cards: data
+          cards: data,
+          games: data
         });
       });
   }
@@ -39,6 +42,38 @@ class Homepage extends Component {
       classCardGame: "notDisplay",
       classLineGame: "col-md-11 border-bottom listCardGame d-flex",
       classRow: "row mx-0 pt-5 mt-4 paddingBottom d-flex justify-content-center"
+    });
+  }
+
+  filterUpdate(event) {
+    let filtres = this.state.filtres;
+    if (filtres.includes(event)) {
+      filtres = filtres.filter(filtre => filtre !== event);
+    } else {
+      filtres.push(event);
+    }
+    let cardLoop = [];
+    let cards = this.state.games;
+    if (filtres.length > 0) {
+      this.state.games.map(game => {
+        if (game.genres) {
+          let number = 0;
+          for (let i = 0; i < game.genres.length; i++) {
+            if (filtres.includes(game.genres[i])) {
+              number++;
+            }
+          }
+          if (number == filtres.length) {
+            cardLoop.push(game);
+          }
+        }
+      });
+      cards = cardLoop;
+    }
+
+    this.setState({
+      filtres: filtres,
+      cards: cards
     });
   }
 
@@ -67,7 +102,7 @@ class Homepage extends Component {
             </div>
           </Carousel>
         </section>
-        <Filter />
+        <Filter filtre={event => this.filterUpdate(event)} />
         <section className="row mx-0">
           <div className="col-12  layoutOrganisation">
             <div className="col-sm-6 col-xl-10 py-4 border-right layoutTitle">

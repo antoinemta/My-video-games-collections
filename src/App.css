@@ -12,6 +12,10 @@ footer {
   display: none;
 }
 
+.genresNotSelected {
+  background-color: blue;
+}
+
 .btnList {
   border-radius: 20px 20px 20px 20px;
   width: 60px;
@@ -136,9 +140,20 @@ footer {
 }
 
 .filterSelected {
+  margin: 6px;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  border-radius: 11px;
+}
+
+.filterNotSelected {
+  margin: 6px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 11px;
+  background-color: blue;
 }
 
 .sectionFilter {
