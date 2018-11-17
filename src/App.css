@@ -38,6 +38,11 @@ footer {
   text-align: center;
 }
 
+.imgRandom {
+  width: 130px;
+  height: 130px;
+}
+
 .addingButton {
   width: 100px;
   height: 50px;
@@ -440,7 +445,7 @@ footer {
     height: 60px;
   }
 
-  .layoutOrganisation,
+  .layoutTitle,
   .title,
   .dialect {
     display: none;

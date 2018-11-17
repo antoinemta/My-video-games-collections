@@ -244,64 +244,69 @@ class GameDetail extends Component {
             Add your movie to a new collection or an existing collection.
           </ModalHeader>
           <ModalBody className="modalBodyAdd mx-5">
-            <label htmlFor="selectCollection">
-              Choose an existing collection :
-            </label>
-            <br />
-            <select
-              onChange={event => this.changeCollection(event)}
-              onClick={event => this.changeCollection(event)}
-              className="w-100 my-2"
-              id="selectCollection"
-            >
-              {this.state.collection.map(collection => (
-                <option key={collection}>{collection}</option>
-              ))}
-
-              <optgroup>
-                <option>---New collection---</option>
-              </optgroup>
-            </select>
-            {this.state.selectedOption === true && (
-              <Button
-                className="button1ModalCollection mb-3 mt-2"
-                onClick={() => this.addLocalStorage()}
+            <div>
+              <img src="mario.png" className="imgRandom" />
+            </div>
+            <div>
+              <label htmlFor="selectCollection">
+                Choose an existing collection :
+              </label>
+              <br />
+              <select
+                onChange={event => this.changeCollection(event)}
+                onClick={event => this.changeCollection(event)}
+                className="w-100 my-2"
+                id="selectCollection"
               >
-                Add movie to this collection
-              </Button>
-            )}
-            <br />
-            <span className={this.state.classButtonAddMovie}>
-              {this.state.comment}
-            </span>
+                {this.state.collection.map(collection => (
+                  <option key={collection}>{collection}</option>
+                ))}
 
-            <br />
-            {this.state.selectedOption === false && (
-              <div>
-                <label className="mt-3" for="inputCollection">
-                  Create a new collection :
-                </label>
-                <br />
-                <input
-                  type="text"
-                  className="w-100 my-2"
-                  id="inputCollection"
-                  placeholder="Choose a name for your collection"
-                  onChange={event => this.createCollection(event)}
-                />
-                <br />
+                <optgroup>
+                  <option>---New collection---</option>
+                </optgroup>
+              </select>
+              {this.state.selectedOption === true && (
                 <Button
-                  className="button2ModalCollection mt-2 mb-3"
-                  onClick={() => this.addCollection()}
+                  className="button1ModalCollection mb-3 mt-2"
+                  onClick={() => this.addLocalStorage()}
                 >
-                  Add collection
+                  Add movie to this collection
                 </Button>
-              </div>
-            )}
-            <br />
-            <span className={this.state.classButtonAddCollection}>
-              {this.state.comment}
-            </span>
+              )}
+              <br />
+              <span className={this.state.classButtonAddMovie}>
+                {this.state.comment}
+              </span>
+
+              <br />
+              {this.state.selectedOption === false && (
+                <div>
+                  <label className="mt-3" for="inputCollection">
+                    Create a new collection :
+                  </label>
+                  <br />
+                  <input
+                    type="text"
+                    className="w-100 my-2"
+                    id="inputCollection"
+                    placeholder="Choose a name for your collection"
+                    onChange={event => this.createCollection(event)}
+                  />
+                  <br />
+                  <Button
+                    className="button2ModalCollection mt-2 mb-3"
+                    onClick={() => this.addCollection()}
+                  >
+                    Add collection
+                  </Button>
+                </div>
+              )}
+              <br />
+              <span className={this.state.classButtonAddCollection}>
+                {this.state.comment}
+              </span>
+            </div>
           </ModalBody>
           <ModalFooter>
             <Button

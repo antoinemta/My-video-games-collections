@@ -63,8 +63,8 @@ class Homepage extends Component {
         </section>
         <Filter />
         <section className="row mx-0">
-          <div className="col-12 layoutOrganisation">
-            <div className="col-sm-6 col-xl-10 py-4 border-right">
+          <div className="col-12  layoutOrganisation">
+            <div className="col-sm-6 col-xl-10 py-4 border-right layoutTitle">
               <span className="sectionTitle text-white d-flex justify-content-center">
                 Games which may interest you
               </span>
