@@ -234,13 +234,7 @@ footer {
 .imgCard:hover + span {
   background-color: rgba(0, 0, 0, 0);
   font-weight: bold;
-  color: black;
-  animation: anime 0.2s linear forwards;
-}
-
-.imgCardCol:hover + button + span {
-  background-color: rgba(0, 0, 0, 0);
-  font-weight: bold;
+  text-shadow: 2px 2px 1px white;
   color: black;
   animation: anime 0.2s linear forwards;
 }
@@ -249,6 +243,7 @@ footer {
   background-color: rgba(0, 0, 0, 0);
   font-weight: bold;
   color: black;
+  text-shadow: 3px 3px 1px white;
   animation: anime 0.2s linear forwards;
 }
 
@@ -310,16 +305,16 @@ footer {
   height: 150px;
 }
 
+.divRandom {
+  text-align: center;
+}
+
 .optionCollection {
   margin-left: 13%;
   margin-top: 60px;
 }
 
 .modalBodyAdd {
-  text-align: center;
-}
-
-.modalHeaderAdd {
   text-align: center;
 }
 
@@ -359,7 +354,7 @@ footer {
 
   100% {
     bottom: 50%;
-    font-size: 1em;
+    font-size: 1.5em;
   }
 }
 
@@ -371,10 +366,10 @@ footer {
 
 @keyframes animation {
   0% {
-    left: 1900px;
+    left: 100%;
   }
   100% {
-    left: -1000px;
+    left: -50%;
   }
 }
 
@@ -445,6 +440,7 @@ footer {
     height: 60px;
   }
 
+  .divRandomImg,
   .layoutTitle,
   .title,
   .dialect {

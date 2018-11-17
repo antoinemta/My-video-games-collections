@@ -27,9 +27,9 @@ class Collection extends Component {
       this.setState({
         collection: JSON.parse(localStorage.getItem("collections")),
         games: JSON.parse(localStorage.getItem("games")),
-        cards: JSON.parse(localStorage.getItem("games")).filter(
-          game => game.collection == this.state.collectionChoosen
-        )
+        cards: JSON.parse(localStorage.getItem("games"))
+          .filter(game => game.collection == this.state.collectionChoosen)
+          .reverse()
       });
     } else {
       localStorage.setItem(
@@ -59,9 +59,9 @@ class Collection extends Component {
   changeCollection(event) {
     this.setState({
       collectionChoosen: event.target.value,
-      cards: this.state.games.filter(
-        game => game.collection == event.target.value
-      )
+      cards: this.state.games
+        .filter(game => game.collection == event.target.value)
+        .reverse()
     });
   }
 
@@ -81,7 +81,9 @@ class Collection extends Component {
         games: games,
         collection: collections,
         modal: !this.state.modal,
-        cards: games.filter(game => game.collection == "My favorite games"),
+        cards: games
+          .filter(game => game.collection == "My favorite games")
+          .reverse(),
         collectionChoosen: "My favorite games"
       });
     }
@@ -110,9 +112,9 @@ class Collection extends Component {
     localStorage.setItem("games", JSON.stringify(games));
     this.setState({
       games: games,
-      cards: games.filter(
-        game => game.collection == this.state.collectionChoosen
-      )
+      cards: games
+        .filter(game => game.collection == this.state.collectionChoosen)
+        .reverse()
     });
   }
 
@@ -131,7 +133,7 @@ class Collection extends Component {
               {" "}
               <div class="form-group">
                 <label for="sel1" className="text-white">
-                  <h1>Select list :</h1>
+                  <h1>Select a collection :</h1>
                 </label>
                 <select
                   class="form-control"
@@ -165,7 +167,10 @@ class Collection extends Component {
           <div className="col-12 layoutOrganisation">
             <div className="col-sm-6 col-xl-10 py-4 border-right layoutTitle">
               <span className="sectionTitle text-white d-flex justify-content-center">
-                Games which may interest you
+                {String(this.state.cards.length) +
+                  ' game(s) in "' +
+                  this.state.collectionChoosen +
+                  '"'}
               </span>
             </div>
             <div className="col d-flex justify-content-center pt-4">
@@ -309,7 +314,11 @@ class Collection extends Component {
         >
           <ModalHeader toggle={this.appearModal}>Delete Collection</ModalHeader>
           <ModalBody>
-            Are you sure to want to delete this collection ?
+            <div className="divRandom">
+              <img src="luigi.png" className="imgRandom my-3" />
+              <br />
+              Are you sure to want to delete this collection ?
+            </div>
           </ModalBody>
           <ModalFooter>
             <Button className="button1ModalDelete" onClick={this.appearModal}>

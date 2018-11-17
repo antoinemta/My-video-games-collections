@@ -49,15 +49,21 @@ class Homepage extends Component {
           <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
             <div>
               <img src="index.jpeg" className="imgCarousel" />
-              <p className="legend">Legend 1</p>
             </div>
             <div>
-              <img src="index.jpeg" className="imgCarousel" />
-              <p className="legend">Legend 2</p>
+              <img src="supermario.jpg" className="imgCarousel" />
             </div>
             <div>
-              <img src="index.jpeg" className="imgCarousel" />
-              <p className="legend">Legend 3</p>
+              <img src="residentevil.jpeg" className="imgCarousel" />
+            </div>
+            <div>
+              <img src="finalfantasy.jpg" className="imgCarousel" />
+            </div>
+            <div>
+              <img src="gta5.jpg" className="imgCarousel" />
+            </div>
+            <div>
+              <img src="halo.jpeg" className="imgCarousel" />
             </div>
           </Carousel>
         </section>

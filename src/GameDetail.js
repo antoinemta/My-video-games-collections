@@ -21,8 +21,9 @@ class GameDetail extends Component {
       inputCollection: "",
       selectedOption: true,
       comment: "",
-
-      modal: false
+      pics: ["sonic.png", "mario.png", "link.png", "crash.png", "snake.png"],
+      modal: false,
+      casePics: 0
     };
     this.appearModal = this.appearModal.bind(this);
   }
@@ -78,10 +79,10 @@ class GameDetail extends Component {
         collection: this.state.collectionChoosen
       });
       /* The messages change in consequence */
-      comment = "This movie has well been added in this collection !";
+      comment = "This game has well been added in this collection!";
       className = "validateMessage";
     } else {
-      comment = "This movie is already registred in this collection";
+      comment = "This game is already registred in this collection";
       className = "errorMessage";
     }
     localStorage.setItem("games", JSON.stringify(games)); // we actualise the localstorage with the news movies added
@@ -108,11 +109,11 @@ class GameDetail extends Component {
     ) {
       collections.push(this.state.inputCollection);
       localStorage.setItem("collections", JSON.stringify(collections));
-      comment = "Your collection has been well added !";
+      comment =
+        "Your collection has been well added! Don't forget to add your game into it";
       className = "validateMessage";
     } else {
-      comment =
-        "Name of collection not conform or collection already existing.";
+      comment = "Name of collection not conform or collection already existing";
       className = "errorMessage";
     }
     this.setState({
@@ -150,7 +151,8 @@ class GameDetail extends Component {
     this.setState({
       modal: !this.state.modal,
       comment: "",
-      classComment: ""
+      classComment: "",
+      casePics: Math.floor((Math.random() * 10) / 2)
     });
   }
 
@@ -211,43 +213,48 @@ class GameDetail extends Component {
                   </a>
                 </div>
               ))}
-            {!this.props.location.state.screens && (
+            {!this.props.location.state.screens[0] && (
               <span className="text-white notScreens">
                 <h5>Screenshots not available yet.</h5>
               </span>
             )}
           </div>
         </div>
-        <div className="row pb-5 mx-0">
-          <div className="col-12 pt-5 d-flex justify-content-center">
-            <span className="text-white mt-5">
-              <h4>
-                <u>Trailer :</u>
-              </h4>
-            </span>
-          </div>
-          <div className="col-12 pt-2 pb-5 mb-5 d-flex justify-content-center">
-            <div className="col-xl-6 mb-5 embed-responsive embed-responsive-16by9">
-              <YouTube
-                videoId={this.props.location.state.videoId}
-                className="embed-responsive-item"
-              />
+        {this.props.location.state.videoId !== "" && (
+          <div className="row pb-5 mx-0">
+            <div className="col-12 pt-5 d-flex justify-content-center">
+              <span className="text-white mt-5">
+                <h4>
+                  <u>Trailer :</u>
+                </h4>
+              </span>
+            </div>
+            <div className="col-12 pt-2 pb-5 mb-5 d-flex justify-content-center">
+              <div className="col-xl-6 mb-5 embed-responsive embed-responsive-16by9">
+                <YouTube
+                  videoId={this.props.location.state.videoId}
+                  className="embed-responsive-item"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <Modal
           isOpen={this.state.modal}
           toggle={this.appearModal}
-          className={this.props.className}
+          className={this.props.className + " modal-lg"}
         >
           <ModalHeader toggle={this.appearModal} className="modalHeaderAdd">
-            Add your movie to a new collection or an existing collection.
+            Add your game into a new collection or an existing collection
           </ModalHeader>
-          <ModalBody className="modalBodyAdd mx-5">
-            <div>
-              <img src="mario.png" className="imgRandom" />
+          <ModalBody className="modalBodyAdd my-5 mx-5 d-flex">
+            <div className="mr-4 divRandomImg">
+              <img
+                src={this.state.pics[this.state.casePics]}
+                className="imgRandom"
+              />
             </div>
-            <div>
+            <div className="ml-5 mr-4 w-100">
               <label htmlFor="selectCollection">
                 Choose an existing collection :
               </label>
@@ -271,7 +278,7 @@ class GameDetail extends Component {
                   className="button1ModalCollection mb-3 mt-2"
                   onClick={() => this.addLocalStorage()}
                 >
-                  Add movie to this collection
+                  Add game into this collection
                 </Button>
               )}
               <br />

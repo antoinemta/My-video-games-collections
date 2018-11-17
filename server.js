@@ -2,7 +2,7 @@ const express = require("express")();
 const igdb = require("igdb-api-node").default;
 //const client = igdb("90a99261aaa1cfdc5c234776abdc14fb");
 
-const client = igdb("2763a56c0facbc3c1e8373bfb43f0bbd");
+const client = igdb("e9c855aa26e0143ade35f1127ca9fc97");
 
 express.get("/home", function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
