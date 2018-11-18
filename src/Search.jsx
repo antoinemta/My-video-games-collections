@@ -17,8 +17,7 @@ class Search extends Component {
       classLineGame: "notDisplay",
       classRow: "row mx-0 py-5 mt-4",
       cards: [],
-      games: [],
-      filtres: []
+      games: []
     };
   }
 
@@ -64,38 +63,6 @@ class Search extends Component {
     });
   }
 
-  filterUpdate(event) {
-    let filtres = this.state.filtres;
-    if (filtres.includes(event)) {
-      filtres = filtres.filter(filtre => filtre !== event);
-    } else {
-      filtres.push(event);
-    }
-    let cardLoop = [];
-    let cards = this.state.games;
-    if (filtres.length > 0) {
-      this.state.games.map(game => {
-        if (game.genres) {
-          let number = 0;
-          for (let i = 0; i < game.genres.length; i++) {
-            if (filtres.includes(game.genres[i])) {
-              number++;
-            }
-          }
-          if (number == filtres.length) {
-            cardLoop.push(game);
-          }
-        }
-      });
-      cards = cardLoop;
-    }
-
-    this.setState({
-      filtres: filtres,
-      cards: cards
-    });
-  }
-
   render() {
     try {
       let isset = this.props.location.state.input;
@@ -104,8 +71,7 @@ class Search extends Component {
     }
 
     return (
-      <div className="col-12 homePage px-0 border-top">
-        <Filter filtre={event => this.filterUpdate(event)} />
+      <div className="col-12 homePage px-0">
         <section className="row mx-0">
           <div className="col-12 layoutOrganisation">
             <div className="col-sm-6 col-xl-10 py-4 border-right layoutTitle">
