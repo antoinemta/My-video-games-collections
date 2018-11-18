@@ -13,20 +13,22 @@ import Search from ".//Components/Search";
 class App extends Component {
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <div>
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Homepage} />
-              <Route exact path="/game" component={GameDetail} />
-              <Route exact path="/collection" component={Collection} />
-              <Route exact path="/search" component={Search} />
-            </Switch>
-            <Footer />
+      <BrowserRouter>
+        <div className="container-fluid">
+          <Header />
+          <div className="row d-flex justify-content-center subContainer">
+            <div className="col-md-10 px-0">
+              <Switch>
+                <Route exact path="/" component={Homepage} />
+                <Route exact path="/game" component={GameDetail} />
+                <Route exact path="/collection" component={Collection} />
+                <Route exact path="/search" component={Search} />
+              </Switch>
+            </div>
           </div>
-        </BrowserRouter>
-      </div>
+          <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }
