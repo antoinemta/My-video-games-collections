@@ -14,21 +14,20 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <div className="container-fluid">
-            <Header />
-            <div className="row d-flex justify-content-center subContainer">
-              <div className="col-md-10 px-0">
+        <div className="container-fluid">
+          <Header />
+          <div className="row d-flex justify-content-center subContainer">
+            <div className="col-md-10 px-0">
+              <Switch>
                 <Route exact path="/" component={Homepage} />
                 <Route exact path="/game" component={GameDetail} />
                 <Route exact path="/collection" component={Collection} />
                 <Route exact path="/search" component={Search} />
-              </div>
+              </Switch>
             </div>
-
-            <Footer />
           </div>
-        </Switch>
+          <Footer />
+        </div>
       </BrowserRouter>
     );
   }
