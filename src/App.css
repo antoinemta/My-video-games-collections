@@ -1,32 +1,482 @@
-.App {
+header,
+footer {
+  background-color: black;
+}
+
+.titleDetail {
+  color: white;
+  font-size: 2.5em;
+}
+
+.messageNone {
+  display: none;
+}
+
+.genresNotSelected {
+  background-color: blue;
+}
+
+.btnList {
+  border-radius: 20px 20px 20px 20px;
+  width: 60px;
+  height: 60px;
+}
+
+.screenTitle {
+  color: white;
+  font-size: 1.5em;
+  margin-left: 17%;
+  text-decoration: underline;
+}
+
+.addingDivButton {
+  text-align: right;
+}
+
+.titleCollection {
+  background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.divBtnDelete {
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.imgRandom {
+  width: 130px;
+  height: 130px;
+}
+
+.addingButton {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  border: 1px green solid;
+  color: green;
+  border-radius: 22px 22px 22px 22px;
+}
+
+.deletingButton {
+  height: 50px;
+  background-color: black;
+  border: 1px red solid;
+  color: red;
+  border-radius: 22px 22px 22px 22px;
+}
+
+.galleryScreens {
+  padding-left: 12%;
+  width: 77%;
+}
+
+.notScreens {
+  margin-left: 13%;
+}
+
+.divScreen {
+  width: 200px;
+  height: 180px;
+}
+
+.subtitleDetail {
+  color: white;
+  font-size: 1.3em;
+  text-decoration: underline;
+}
+
+.contentDetail {
+  font-size: 1.3em;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.paddingBottom {
+  padding-bottom: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btnList:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.carousel,
+.imgCarousel {
+  height: 400px;
+}
+
+.subContainer {
+  background: url("bgfond.jpeg");
+}
+
+.sectionTitle {
+  font-size: 2.6em;
+}
+
+.homePage {
+  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+}
+
+.header {
+  padding-left: 9%;
+  overflow: hidden;
+}
+
+.collectionBtn {
+  margin-left: 4%;
+  text-align: center;
+}
+
+.collectionBtn:hover {
+  cursor: pointer;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+.inputSearch {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.filterSelected {
+  margin: 6px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 11px;
+}
+
+.filterSelected:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.filterNotSelected {
+  margin: 6px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 11px;
+  background-color: blue;
+}
+
+.filterNotSelected:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sectionFilter {
+  background-color: rgb(14, 14, 13);
+  justify-content: center;
+}
+
+.layoutOrganisation {
+  display: flex;
+}
+
+.dialect {
+  background-color: rgb(14, 14, 13);
+  overflow: hidden;
+}
+
+.imgCardPoster {
+  width: 100%;
+  height: 100%;
+}
+
+.spanAnimated {
+  position: relative;
+  animation: animation 17s infinite linear;
+}
+
+.cardGame {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+}
+
+.lineHidden {
+  overflow: hidden;
+  display: flex;
+}
+
+.posterDetail {
+  width: 500px;
+  height: 700px;
+  border: 2px black solid;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.imgCard,
+.imgCardCol,
+.lineCard {
+  width: 160px;
+  height: 100vh;
+}
+
+.btnDelete {
+  position: absolute;
+  border-radius: 22px 22px 22px 22px;
+  top: 8px;
+  left: 70px;
+  background-color: black;
+  border: 1px red solid;
+  color: red;
+}
+
+.btnDelete2 {
+  min-width: 100px;
+  border-radius: 22px 22px 22px 22px;
+  background-color: black;
+  border: 1px red solid;
+  color: red;
+}
+
+.btnDelete2:hover,
+.btnDelete:hover,
+.deletingButton:hover,
+.addingButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px white solid;
+  color: white;
+  cursor: pointer;
+}
+
+.imgCard:hover,
+.imgCardCol:hover {
+  opacity: 0.4;
+  cursor: pointer;
+  animation: animated 0.1s linear forwards;
+}
+
+.imgCard:hover + span {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  text-shadow: 2px 2px 1px white;
+  color: black;
+  animation: anime 0.2s linear forwards;
+}
+
+.titleGame:hover {
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  color: black;
+  text-shadow: 3px 3px 1px white;
+  animation: anime 0.2s linear forwards;
+}
+
+.titleGame {
+  position: absolute;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  bottom: 0px;
+  text-align: center;
+}
+
+.relativeCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.titleWrap {
+  word-wrap: break-word;
+}
+
+.listCardGame {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.listCardGame:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  box-shadow: 6px 6px 3px;
+  cursor: pointer;
+}
+
+.imgLine {
+  height: 100px;
+  width: 100px;
+}
+
+.notDisplay {
+  display: none;
+}
+
+.titleLine {
+  font-size: 1.5em;
+  color: white;
+}
+
+.dateLine {
+  font-size: 1.5em;
+  color: green;
+}
+.ratingLine {
+  text-align: right;
+}
+
+.screen {
+  width: 150px;
+  height: 150px;
+}
+
+.divRandom {
+  text-align: center;
+}
+
+.optionCollection {
+  margin-left: 13%;
+  margin-top: 60px;
+}
+
+.modalBodyAdd {
+  text-align: center;
+}
+
+.errorMessage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
+.validateMessage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: green;
+}
+
+.button1ModalCollection {
+  background-color: black !important;
+  border: none !important;
+}
+
+.button2ModalCollection {
+  background-color: black !important;
+  border: none !important;
+}
+
+.button3ModalCollection {
+  background-color: black !important;
+  border: none !important;
+}
+
+@keyframes anime {
+  0% {
+    font-size: 0.2em;
   }
-  to {
-    transform: rotate(360deg);
+
+  100% {
+    bottom: 50%;
+    font-size: 1.5em;
+  }
+}
+
+@keyframes animated {
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes animation {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -50%;
+  }
+}
+
+@media (min-width: 2000px) {
+  .carousel,
+  .imgCarousel {
+    height: 600px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .commentHeader {
+    display: none;
+  }
+
+  .collectionBtn {
+    margin-left: 0%;
+  }
+
+  .sectionTitle {
+    font-size: 1.5em;
+  }
+
+  .dialect {
+    display: flex;
+    justify-content: center;
+  }
+
+  .spanAnimated {
+    animation: none;
+  }
+
+  .optionCollection {
+    margin-left: 0%;
+  }
+}
+
+@media (max-width: 991px) {
+  .carousel,
+  .imgCarousel {
+    height: 250px;
+  }
+
+  .lineHidden {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 17px;
+  }
+
+  .filterSelected {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .sectionFilter {
+    flex-direction: column;
+  }
+
+  .header {
+    padding-left: 0%;
+    flex-direction: column;
+  }
+
+  .collectionBtn {
+    margin-top: 20px;
+    margin-left: 7%;
+    margin-right: 3%;
+    height: 60px;
+  }
+
+  .divRandomImg,
+  .layoutTitle,
+  .title,
+  .dialect {
+    display: none;
+  }
+
+  .posterDetail {
+    width: 100%;
+  }
+
+  .addingDivButton {
+    text-align: center;
   }
 }
