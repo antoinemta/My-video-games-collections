@@ -1,7 +1,7 @@
 const express = require("express")();
 const igdb = require("igdb-api-node").default;
 
-const client = igdb("e9c855aa26e0143ade35f1127ca9fc97");
+const key = igdb("e9c855aa26e0143ade35f1127ca9fc97");
 
 express.get("/home", function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -15,7 +15,7 @@ express.get("/home", function(req, res, next) {
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.status(200);
-  client
+  key
     .games({
       filters: {
         "release_dates.date-gt": "2017-12-31",
@@ -112,7 +112,7 @@ express.get("/search/:input", function(req, res, next) {
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.status(200);
-  client
+  key
     .games({
       search: req.params.input,
       fields:
