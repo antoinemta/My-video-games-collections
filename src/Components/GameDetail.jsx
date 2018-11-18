@@ -190,172 +190,183 @@ class GameDetail extends Component {
     }
 
     return (
-      <section className="col-12 homePage px-0">
-        <div className="row mx-0">
-          <div className="col-sm-6 pt-5 d-flex justify-content-center">
-            <div className="col-8 pt-5">
-              <div className="titleDetail mt-5">
-                {this.props.location.state.name}
-              </div>
-              <div className="subtitleDetail mt-3">Release Date :</div>
-              <div className="contentDetail ml-4">
-                {this.props.location.state.date}
-              </div>
-              <div className="subtitleDetail mt-3">Genres :</div>
-              <div className="contentDetail ml-4">{this.state.genres}</div>
-              <div className="subtitleDetail mt-3">Summary :</div>
-              <div className="contentDetail ml-4">
-                {this.props.location.state.summary}
-              </div>
-              <div className="col-12 pt-5 addingDivButton">
-                <button
-                  className="addingButton"
-                  onClick={() => this.appearModal()}
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col d-flex justify-content-center pt-5">
-            <img
-              src={this.props.location.state.url}
-              className="mt-5 posterDetail"
-              alt="poster's game"
-            />
-          </div>
-        </div>
-        <div className="row mx-0">
-          <div className="col-12 pl-5 pt-5">
-            <div className="mt-5 screenTitle">Screenshots :</div>
-          </div>
-          <div className="row mx-0 mt-3 galleryScreens">
-            {this.props.location.state.screens &&
-              this.props.location.state.screens.map(url => (
-                <div className="divScreen" key={Math.random()}>
-                  <a href={url} key={Math.random()}>
-                    <img
-                      src={url}
-                      className="screen"
-                      alt="screen's game"
-                      key={Math.random()}
-                    />
-                  </a>
+      <div className="container-fluid">
+        <div className="row d-flex justify-content-center subContainer">
+          <div className="col-md-10 px-0">
+            <section className="col-12 homePage px-0">
+              <div className="row mx-0">
+                <div className="col-sm-6 pt-5 d-flex justify-content-center">
+                  <div className="col-8 pt-5">
+                    <div className="titleDetail mt-5">
+                      {this.props.location.state.name}
+                    </div>
+                    <div className="subtitleDetail mt-3">Release Date :</div>
+                    <div className="contentDetail ml-4">
+                      {this.props.location.state.date}
+                    </div>
+                    <div className="subtitleDetail mt-3">Genres :</div>
+                    <div className="contentDetail ml-4">
+                      {this.state.genres}
+                    </div>
+                    <div className="subtitleDetail mt-3">Summary :</div>
+                    <div className="contentDetail ml-4">
+                      {this.props.location.state.summary}
+                    </div>
+                    <div className="col-12 pt-5 addingDivButton">
+                      <button
+                        className="addingButton"
+                        onClick={() => this.appearModal()}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            {!this.props.location.state.screens[0] && (
-              <span className="text-white notScreens">
-                <h5>Screenshots not available yet.</h5>
-              </span>
-            )}
-          </div>
-        </div>
-        {this.props.location.state.videoId !== "" && (
-          <div className="row pb-5 mx-0">
-            <div className="col-12 pt-5 d-flex justify-content-center">
-              <span className="text-white mt-5">
-                <h4>
-                  <u>Trailer :</u>
-                </h4>
-              </span>
-            </div>
-            <div className="col-12 pt-2 pb-5 mb-5 d-flex justify-content-center">
-              <div className="col-xl-6 mb-5 embed-responsive embed-responsive-16by9">
-                <YouTube
-                  videoId={this.props.location.state.videoId}
-                  className="embed-responsive-item"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.appearModal}
-          className={this.props.className + " modal-lg"}
-        >
-          <ModalHeader toggle={this.appearModal} className="modalHeaderAdd">
-            Add your game into a new collection or an existing collection
-          </ModalHeader>
-          <ModalBody className="modalBodyAdd my-5 mx-5 d-flex">
-            <div className="mr-4 divRandomImg">
-              <img
-                src={this.state.pics[this.state.casePics]}
-                className="imgRandom"
-                alt="pic"
-              />
-            </div>
-            <div className="ml-5 mr-4 w-100">
-              <label htmlFor="selectCollection">
-                Choose an existing collection :
-              </label>
-              <br />
-              <select
-                onChange={event => this.changeCollection(event)}
-                onClick={event => this.changeCollection(event)}
-                className="w-100 my-2"
-                id="selectCollection"
-              >
-                {this.state.collection.map(collection => (
-                  <option key={collection}>{collection}</option>
-                ))}
-
-                <optgroup>
-                  <option>---New collection---</option>
-                </optgroup>
-              </select>
-              {this.state.selectedOption === true && (
-                <Button
-                  className="button1ModalCollection mb-3 mt-2"
-                  onClick={() => this.addLocalStorage()}
-                >
-                  Add game into this collection
-                </Button>
-              )}
-              <br />
-              <span className={this.state.classButtonAddMovie}>
-                {this.state.comment}
-              </span>
-
-              <br />
-              {this.state.selectedOption === false && (
-                <div>
-                  <label className="mt-3" htmlFor="inputCollection">
-                    Create a new collection :
-                  </label>
-                  <br />
-                  <input
-                    type="text"
-                    className="w-100 my-2"
-                    id="inputCollection"
-                    placeholder="Choose a name for your collection"
-                    onChange={event => this.createCollection(event)}
+                <div className="col d-flex justify-content-center pt-5">
+                  <img
+                    src={this.props.location.state.url}
+                    className="mt-5 posterDetail"
+                    alt="poster's game"
                   />
-                  <br />
-                  <Button
-                    className="button2ModalCollection mt-2 mb-3"
-                    onClick={() => this.addCollection()}
-                  >
-                    Add collection
-                  </Button>
+                </div>
+              </div>
+              <div className="row mx-0">
+                <div className="col-12 pl-5 pt-5">
+                  <div className="mt-5 screenTitle">Screenshots :</div>
+                </div>
+                <div className="row mx-0 mt-3 galleryScreens">
+                  {this.props.location.state.screens &&
+                    this.props.location.state.screens.map(url => (
+                      <div className="divScreen" key={Math.random()}>
+                        <a href={url} key={Math.random()}>
+                          <img
+                            src={url}
+                            className="screen"
+                            alt="screen's game"
+                            key={Math.random()}
+                          />
+                        </a>
+                      </div>
+                    ))}
+                  {!this.props.location.state.screens[0] && (
+                    <span className="text-white notScreens">
+                      <h5>Screenshots not available yet.</h5>
+                    </span>
+                  )}
+                </div>
+              </div>
+              {this.props.location.state.videoId !== "" && (
+                <div className="row pb-5 mx-0">
+                  <div className="col-12 pt-5 d-flex justify-content-center">
+                    <span className="text-white mt-5">
+                      <h4>
+                        <u>Trailer :</u>
+                      </h4>
+                    </span>
+                  </div>
+                  <div className="col-12 pt-2 pb-5 mb-5 d-flex justify-content-center">
+                    <div className="col-xl-6 mb-5 embed-responsive embed-responsive-16by9">
+                      <YouTube
+                        videoId={this.props.location.state.videoId}
+                        className="embed-responsive-item"
+                      />
+                    </div>
+                  </div>
                 </div>
               )}
-              <br />
-              <span className={this.state.classButtonAddCollection}>
-                {this.state.comment}
-              </span>
-            </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              className="button3ModalCollection"
-              onClick={this.appearModal}
-            >
-              Close
-            </Button>
-          </ModalFooter>
-        </Modal>
-      </section>
+              <Modal
+                isOpen={this.state.modal}
+                toggle={this.appearModal}
+                className={this.props.className + " modal-lg"}
+              >
+                <ModalHeader
+                  toggle={this.appearModal}
+                  className="modalHeaderAdd"
+                >
+                  Add your game into a new collection or an existing collection
+                </ModalHeader>
+                <ModalBody className="modalBodyAdd my-5 mx-5 d-flex">
+                  <div className="mr-4 divRandomImg">
+                    <img
+                      src={this.state.pics[this.state.casePics]}
+                      className="imgRandom"
+                      alt="pic"
+                    />
+                  </div>
+                  <div className="ml-5 mr-4 w-100">
+                    <label htmlFor="selectCollection">
+                      Choose an existing collection :
+                    </label>
+                    <br />
+                    <select
+                      onChange={event => this.changeCollection(event)}
+                      onClick={event => this.changeCollection(event)}
+                      className="w-100 my-2"
+                      id="selectCollection"
+                    >
+                      {this.state.collection.map(collection => (
+                        <option key={collection}>{collection}</option>
+                      ))}
+
+                      <optgroup>
+                        <option>---New collection---</option>
+                      </optgroup>
+                    </select>
+                    {this.state.selectedOption === true && (
+                      <Button
+                        className="button1ModalCollection mb-3 mt-2"
+                        onClick={() => this.addLocalStorage()}
+                      >
+                        Add game into this collection
+                      </Button>
+                    )}
+                    <br />
+                    <span className={this.state.classButtonAddMovie}>
+                      {this.state.comment}
+                    </span>
+
+                    <br />
+                    {this.state.selectedOption === false && (
+                      <div>
+                        <label className="mt-3" htmlFor="inputCollection">
+                          Create a new collection :
+                        </label>
+                        <br />
+                        <input
+                          type="text"
+                          className="w-100 my-2"
+                          id="inputCollection"
+                          placeholder="Choose a name for your collection"
+                          onChange={event => this.createCollection(event)}
+                        />
+                        <br />
+                        <Button
+                          className="button2ModalCollection mt-2 mb-3"
+                          onClick={() => this.addCollection()}
+                        >
+                          Add collection
+                        </Button>
+                      </div>
+                    )}
+                    <br />
+                    <span className={this.state.classButtonAddCollection}>
+                      {this.state.comment}
+                    </span>
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  <Button
+                    className="button3ModalCollection"
+                    onClick={this.appearModal}
+                  >
+                    Close
+                  </Button>
+                </ModalFooter>
+              </Modal>
+            </section>
+          </div>
+        </div>
+      </div>
     );
   }
 }
