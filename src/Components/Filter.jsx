@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink, Route, BrowserRouter, Switch } from "react-router-dom";
 
 class Filter extends Component {
   constructor() {
@@ -20,7 +19,7 @@ class Filter extends Component {
   filter(event, n) {
     let classGenre = this.state.classGenres;
     if (
-      this.state.classGenres[this.state.genres.indexOf(event.target.id)] ==
+      this.state.classGenres[this.state.genres.indexOf(event.target.id)] ===
       "filterSelected"
     ) {
       classGenre[this.state.genres.indexOf(event.target.id)] =

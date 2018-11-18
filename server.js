@@ -1,6 +1,5 @@
 const express = require("express")();
 const igdb = require("igdb-api-node").default;
-//const client = igdb("90a99261aaa1cfdc5c234776abdc14fb");
 
 const client = igdb("e9c855aa26e0143ade35f1127ca9fc97");
 
@@ -24,9 +23,9 @@ express.get("/home", function(req, res, next) {
         "release_dates.platform-eq": 6
       },
       fields:
-        "cover,name,summary,rating,genres,first_release_date,release_dates,screenshots,videos", // Return all fields
-      limit: 48, // Limit to 5 results
-      offset: 0 // Index offset for results
+        "cover,name,summary,rating,genres,first_release_date,release_dates,screenshots,videos",
+      limit: 48,
+      offset: 0
     })
     .then(response => {
       let games = [];
@@ -117,9 +116,9 @@ express.get("/search/:input", function(req, res, next) {
     .games({
       search: req.params.input,
       fields:
-        "cover,name,summary,rating,genres,first_release_date,release_dates,screenshots,videos", // Return all fields
-      limit: 50, // Limit to 5 results
-      offset: 0 // Index offset for results
+        "cover,name,summary,rating,genres,first_release_date,release_dates,screenshots,videos",
+      limit: 50,
+      offset: 0
     })
     .then(response => {
       let games = [];

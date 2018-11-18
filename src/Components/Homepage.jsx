@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Route, BrowserRouter, Switch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Filter from "./Filter";
@@ -63,10 +63,11 @@ class Homepage extends Component {
               number++;
             }
           }
-          if (number == filtres.length) {
+          if (number === filtres.length) {
             cardLoop.push(game);
           }
         }
+        return null;
       });
       cards = cardLoop;
     }
@@ -83,22 +84,30 @@ class Homepage extends Component {
         <section className="row mx-0">
           <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
             <div>
-              <img src="index.jpeg" className="imgCarousel" />
+              <img src="index.jpeg" className="imgCarousel" alt="slide1" />
             </div>
             <div>
-              <img src="supermario.jpg" className="imgCarousel" />
+              <img src="supermario.jpg" className="imgCarousel" alt="slide2" />
             </div>
             <div>
-              <img src="residentevil.jpeg" className="imgCarousel" />
+              <img
+                src="residentevil.jpeg"
+                className="imgCarousel"
+                alt="slide3"
+              />
             </div>
             <div>
-              <img src="finalfantasy.jpg" className="imgCarousel" />
+              <img
+                src="finalfantasy.jpg"
+                className="imgCarousel"
+                alt="slide4"
+              />
             </div>
             <div>
-              <img src="gta5.jpg" className="imgCarousel" />
+              <img src="gta5.jpg" className="imgCarousel" alt="slide5" />
             </div>
             <div>
-              <img src="halo.jpeg" className="imgCarousel" />
+              <img src="halo.jpeg" className="imgCarousel" alt="slide6" />
             </div>
           </Carousel>
         </section>
@@ -115,11 +124,13 @@ class Homepage extends Component {
                 src="card.png"
                 className="btnList mr-4"
                 onClick={() => this.displayCard()}
+                alt="layout card"
               />
               <img
                 src="line.png"
                 className="btnList"
                 onClick={() => this.displayLine()}
+                alt="layout line"
               />
             </div>
           </div>
@@ -143,10 +154,18 @@ class Homepage extends Component {
                 }
               }}
               className={this.state.classCardGame}
+              key={Math.random()}
             >
-              <div className="relativeCard">
-                <img src={cards.cover} className="imgCard" />
-                <span className="titleGame">{cards.name}</span>
+              <div className="relativeCard" key={Math.random()}>
+                <img
+                  src={cards.cover}
+                  className="imgCard"
+                  alt="poster's card"
+                  key={Math.random()}
+                />
+                <span className="titleGame" key={Math.random()}>
+                  {cards.name}
+                </span>
               </div>
             </NavLink>
           ))}
@@ -168,25 +187,48 @@ class Homepage extends Component {
                 }
               }}
               className={this.state.classLineGame}
+              key={Math.random()}
             >
-              <div className="col-2 d-none d-sm-none d-md-none d-lg-none d-xl-block hidden">
-                <img src={cards.cover} className="my-3 ml-5 imgLine" />
+              <div
+                className="col-2 d-none d-sm-none d-md-none d-lg-none d-xl-block hidden"
+                key={Math.random()}
+              >
+                <img
+                  src={cards.cover}
+                  className="my-3 ml-5 imgLine"
+                  alt="icon's card"
+                  key={Math.random()}
+                />
               </div>
-              <div className="col-8 hidden">
-                <div className="pt-3">
-                  <span className="titleLine">{cards.name}</span>
-                  <span className="dateLine ml-3">({cards.date})</span>
+              <div className="col-8 hidden" key={Math.random()}>
+                <div className="pt-3" key={Math.random()}>
+                  <span className="titleLine" key={Math.random()}>
+                    {cards.name}
+                  </span>
+                  <span className="dateLine ml-3" key={Math.random()}>
+                    ({cards.date})
+                  </span>
                 </div>
-                <div>
+                <div key={Math.random()}>
                   {cards.stars.map(url => (
-                    <img src={url} className="star" />
+                    <img
+                      src={url}
+                      className="star"
+                      alt="star"
+                      key={Math.random()}
+                    />
                   ))}
                 </div>
               </div>
-              <div className="col ratingLine d-none d-sm-block hidden">
-                <span className="text-white">
+              <div
+                className="col ratingLine d-none d-sm-block hidden"
+                key={Math.random()}
+              >
+                <span className="text-white" key={Math.random()}>
                   {cards.rating !== "" && (
-                    <h3 className="mt-5 mr-4">{cards.rating + "/100"}</h3>
+                    <h3 className="mt-5 mr-4" key={Math.random()}>
+                      {cards.rating + "/100"}
+                    </h3>
                   )}
                 </span>
               </div>

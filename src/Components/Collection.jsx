@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { NavLink, Route, BrowserRouter, Switch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import Filter from "./Filter";
-import YouTube from "react-youtube";
 
 class Collection extends Component {
   constructor() {
@@ -28,7 +26,7 @@ class Collection extends Component {
         collection: JSON.parse(localStorage.getItem("collections")),
         games: JSON.parse(localStorage.getItem("games")),
         cards: JSON.parse(localStorage.getItem("games"))
-          .filter(game => game.collection == this.state.collectionChoosen)
+          .filter(game => game.collection === this.state.collectionChoosen)
           .reverse()
       });
     } else {
@@ -60,7 +58,7 @@ class Collection extends Component {
     this.setState({
       collectionChoosen: event.target.value,
       cards: this.state.games
-        .filter(game => game.collection == event.target.value)
+        .filter(game => game.collection === event.target.value)
         .reverse()
     });
   }
@@ -82,7 +80,7 @@ class Collection extends Component {
         collection: collections,
         modal: !this.state.modal,
         cards: games
-          .filter(game => game.collection == "My favorite games")
+          .filter(game => game.collection === "My favorite games")
           .reverse(),
         collectionChoosen: "My favorite games"
       });
@@ -107,13 +105,14 @@ class Collection extends Component {
           collection: game.collection
         });
       }
+      return null;
     });
 
     localStorage.setItem("games", JSON.stringify(games));
     this.setState({
       games: games,
       cards: games
-        .filter(game => game.collection == this.state.collectionChoosen)
+        .filter(game => game.collection === this.state.collectionChoosen)
         .reverse()
     });
   }
@@ -131,17 +130,17 @@ class Collection extends Component {
           <div className="col-12">
             <div className="col-xl-4 optionCollection">
               {" "}
-              <div class="form-group">
-                <label for="sel1" className="text-white">
+              <div className="form-group">
+                <label htmlFor="sel1" className="text-white">
                   <h1>Select a collection :</h1>
                 </label>
                 <select
-                  class="form-control"
+                  className="form-control"
                   onChange={event => this.changeCollection(event)}
                   id="sel1"
                 >
                   {this.state.collection.map(collection => (
-                    <option>{collection}</option>
+                    <option key={collection}>{collection}</option>
                   ))}
                 </select>
               </div>{" "}
@@ -178,18 +177,20 @@ class Collection extends Component {
                 src="card.png"
                 className="btnList mr-4"
                 onClick={() => this.displayCard()}
+                alt="icon card"
               />
               <img
                 src="line.png"
                 className="btnList"
                 onClick={() => this.displayLine()}
+                alt="line card"
               />
             </div>
           </div>
         </section>
         <div className={this.state.classRow}>
           {this.state.cards.map(game => (
-            <div className={this.state.classCardGame}>
+            <div className={this.state.classCardGame} key={Math.random()}>
               <div className="relativeCard">
                 <NavLink
                   to={{
@@ -208,21 +209,30 @@ class Collection extends Component {
                     }
                   }}
                   className="imgCardCol"
+                  key={Math.random()}
                 >
-                  <img src={game.url} className="imgCardPoster" />
+                  <img
+                    src={game.url}
+                    className="imgCardPoster"
+                    alt="poster's game"
+                    key={Math.random()}
+                  />
                 </NavLink>
                 <button
                   className="btnDelete px-3 py-2"
                   onClick={event => this.gameDelete(game.id)}
+                  key={Math.random()}
                 >
                   Delete
                 </button>
-                <span className="titleGame">{game.name}</span>
+                <span className="titleGame" key={Math.random()}>
+                  {game.name}
+                </span>
               </div>
             </div>
           ))}
           {this.state.cards.map(game => (
-            <div className={this.state.classLineGame}>
+            <div className={this.state.classLineGame} key={Math.random()}>
               <NavLink
                 to={{
                   pathname: "/game",
@@ -240,10 +250,16 @@ class Collection extends Component {
                   }
                 }}
                 className="col-2 d-none d-sm-none d-md-none d-lg-none d-xl-block hidden"
+                key={Math.random()}
               >
-                <img src={game.url} className="my-3 ml-5 imgLine" />
+                <img
+                  src={game.url}
+                  className="my-3 ml-5 imgLine"
+                  alt="poster's game"
+                  key={Math.random()}
+                />
               </NavLink>
-              <div className="col-8 lineHidden">
+              <div className="col-8 lineHidden" key={Math.random()}>
                 <NavLink
                   to={{
                     pathname: "/game",
@@ -260,21 +276,32 @@ class Collection extends Component {
                       id: game.id
                     }
                   }}
+                  key={Math.random()}
                 >
-                  <div className="pt-3">
-                    <span className="titleLine">{game.name}</span>
-                    <span className="dateLine ml-3">{game.date}</span>
+                  <div className="pt-3" key={Math.random()}>
+                    <span className="titleLine" key={Math.random()}>
+                      {game.name}
+                    </span>
+                    <span className="dateLine ml-3" key={Math.random()}>
+                      {game.date}
+                    </span>
                   </div>
-                  <div>
+                  <div key={Math.random()}>
                     {game.stars.map(url => (
-                      <img src={url} className="star" />
+                      <img
+                        src={url}
+                        className="star"
+                        alt="star"
+                        key={Math.random()}
+                      />
                     ))}
                   </div>
                 </NavLink>
-                <div className="pt-3 pl-5">
+                <div className="pt-3 pl-5" key={Math.random()}>
                   <button
                     className="btnDelete2 px-3 py-2"
                     onClick={event => this.gameDelete(game.id)}
+                    key={Math.random()}
                   >
                     Delete
                   </button>
@@ -297,10 +324,13 @@ class Collection extends Component {
                   }
                 }}
                 className="col ratingLine d-none d-sm-block hidden"
+                key={Math.random()}
               >
-                <span className="text-white">
+                <span className="text-white" key={Math.random()}>
                   {game.rating !== "" && (
-                    <h3 className="mt-5 mr-4">{game.rating + "/100"}</h3>
+                    <h3 className="mt-5 mr-4" key={Math.random()}>
+                      {game.rating + "/100"}
+                    </h3>
                   )}
                 </span>
               </NavLink>
@@ -315,7 +345,7 @@ class Collection extends Component {
           <ModalHeader toggle={this.appearModal}>Delete Collection</ModalHeader>
           <ModalBody>
             <div className="divRandom">
-              <img src="luigi.png" className="imgRandom my-3" />
+              <img src="luigi.png" className="imgRandom my-3" alt="luigi" />
               <br />
               Are you sure to want to delete this collection ?
             </div>

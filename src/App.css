@@ -147,6 +147,11 @@ footer {
   border-radius: 11px;
 }
 
+.filterSelected:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 .filterNotSelected {
   margin: 6px;
   text-align: center;
@@ -154,6 +159,11 @@ footer {
   padding-bottom: 20px;
   border-radius: 11px;
   background-color: blue;
+}
+
+.filterNotSelected:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .sectionFilter {

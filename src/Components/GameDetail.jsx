@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  NavLink,
-  Redirect,
-  Route,
-  BrowserRouter,
-  Switch
-} from "react-router-dom";
-import Filter from "./Filter";
+import { Redirect } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import YouTube from "react-youtube";
 
@@ -21,6 +14,7 @@ class GameDetail extends Component {
       inputCollection: "",
       selectedOption: true,
       comment: "",
+      genres: "",
       pics: ["sonic.png", "mario.png", "link.png", "crash.png", "snake.png"],
       modal: false,
       casePics: 0
@@ -42,6 +36,37 @@ class GameDetail extends Component {
       );
       localStorage.setItem("games", JSON.stringify([]));
     }
+    try {
+      if (this.props.location.state.genres[0]) {
+        let genres = "";
+        this.props.location.state.genres.map(genre => {
+          switch (genre) {
+            case 31:
+              genres += "Action, Adventure, ";
+              break;
+            case 5:
+              genres += "FPS, ";
+              break;
+            case 12:
+              genres += "RPG, ";
+              break;
+            case 4:
+              genres += "Beat'em all, ";
+              break;
+            case 14:
+              genres += "Sport, ";
+              break;
+            default:
+              genres += "";
+              break;
+          }
+          return null;
+        });
+        this.setState({
+          genres: genres
+        });
+      }
+    } catch {}
   }
 
   createCollection(event) {
@@ -159,6 +184,7 @@ class GameDetail extends Component {
   render() {
     try {
       let isset = this.props.location.state.name;
+      console.log(isset + "'s details");
     } catch {
       return <Redirect to="/" from="/game" />;
     }
@@ -176,9 +202,7 @@ class GameDetail extends Component {
                 {this.props.location.state.date}
               </div>
               <div className="subtitleDetail mt-3">Genres :</div>
-              <div className="contentDetail ml-4">
-                {this.props.location.state.genres[0]}
-              </div>
+              <div className="contentDetail ml-4">{this.state.genres}</div>
               <div className="subtitleDetail mt-3">Summary :</div>
               <div className="contentDetail ml-4">
                 {this.props.location.state.summary}
@@ -197,6 +221,7 @@ class GameDetail extends Component {
             <img
               src={this.props.location.state.url}
               className="mt-5 posterDetail"
+              alt="poster's game"
             />
           </div>
         </div>
@@ -207,9 +232,14 @@ class GameDetail extends Component {
           <div className="row mx-0 mt-3 galleryScreens">
             {this.props.location.state.screens &&
               this.props.location.state.screens.map(url => (
-                <div className="divScreen">
-                  <a href={url}>
-                    <img src={url} className="screen" />
+                <div className="divScreen" key={Math.random()}>
+                  <a href={url} key={Math.random()}>
+                    <img
+                      src={url}
+                      className="screen"
+                      alt="screen's game"
+                      key={Math.random()}
+                    />
                   </a>
                 </div>
               ))}
@@ -252,6 +282,7 @@ class GameDetail extends Component {
               <img
                 src={this.state.pics[this.state.casePics]}
                 className="imgRandom"
+                alt="pic"
               />
             </div>
             <div className="ml-5 mr-4 w-100">
@@ -289,7 +320,7 @@ class GameDetail extends Component {
               <br />
               {this.state.selectedOption === false && (
                 <div>
-                  <label className="mt-3" for="inputCollection">
+                  <label className="mt-3" htmlFor="inputCollection">
                     Create a new collection :
                   </label>
                   <br />
